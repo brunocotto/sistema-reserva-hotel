@@ -24,10 +24,6 @@ O Sistema de Reservas de Hotel é um sistema que permite gerenciar reservas de q
     git clone https://github.com/brunocotto/sistema-reserva-hotel.git
     ```
 
-## Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue para discutir novas funcionalidades ou enviar um pull request com melhorias no código.
-
 ## Autor
 
 [@brunocotto](https://github.com/brunocotto)
