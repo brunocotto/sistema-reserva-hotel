@@ -99,8 +99,11 @@ class ArvoreReservas(RepositorioReservasInterface):
                     "nome": no.reserva.nome,
                     "cpf": no.reserva.cpf
                 })
+            if numero_quarto <= no.reserva.numero_quarto:
                 self._listar_reservas_recursivo(no.esquerda, numero_quarto, lista_reservas)
+            if numero_quarto >= no.reserva.numero_quarto:
                 self._listar_reservas_recursivo(no.direita, numero_quarto, lista_reservas)
+
 
     def _encontrar_minimo(self, no):
         current = no
