@@ -1,9 +1,6 @@
 from reserva import Reserva
 from arvore_reservas import ArvoreReservas
 
-# Lista com os dados das 20 reservas
-
-
 def exibir_menu():
     print("\n Sistema de Reservas de Hotel ")
     print("1. Inserir Reserva")
@@ -29,9 +26,9 @@ if __name__ == "__main__":
             reserva_sucesso = arvore_reservas.inserir_reserva(Reserva(data, numero_quarto, nome, cpf))
 
             if reserva_sucesso:
-              print("Reserva inserida com sucesso.")
+                print("Reserva inserida com sucesso.")
             else:
-                print("Não é possível inserir reservas para datas passadas.")
+                print("Não é possível reservar o quarto para esta data.")
         elif opcao == "2":
             data = input("Digite a data para verificar disponibilidade (AAAA-MM-DD): ")
             numero_quarto = int(input("Digite o número do quarto: "))
@@ -44,7 +41,7 @@ if __name__ == "__main__":
             data = input("Digite a data da reserva a ser cancelada (AAAA-MM-DD): ")
             numero_quarto = int(input("Digite o número do quarto: "))
             arvore_reservas.cancelar_reserva(data, numero_quarto)
-            print("Reserva cancelada com sucesso!")
+            print("Reserva cancelada com sucesso.")
         elif opcao == "4":
             numero_quarto = int(input("Digite o número do quarto para listar as reservas: "))
             reservas_quarto = arvore_reservas.listar_reservas(numero_quarto)

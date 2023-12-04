@@ -11,12 +11,17 @@ class ArvoreReservas(RepositorioReservasInterface):
         data_reserva = datetime.strptime(reserva.data, "%Y-%m-%d").date()
 
         # Verifica se a data da reserva é maior ou igual à data atual
-        if data_reserva >= data_atual:
-            # Chama a inserção recursiva na árvore
-            self.raiz = self._inserir_reserva_recursivo(self.raiz, reserva)
-            return True  # retorno da função indicando sucesso
-        else:
-            return False  # retorno da função indicando falha
+        if data_reserva < data_atual:
+            return False  # Indicativo de falha devido à data inválida
+
+        # Verifica se o quarto está disponível na data da reserva
+        if not self.verificar_disponibilidade(reserva.data, reserva.numero_quarto):
+            return False  # Indicativo de falha devido ao quarto já estar reservado para essa data
+
+        # Chama a inserção recursiva na árvore
+        self.raiz = self._inserir_reserva_recursivo(self.raiz, reserva)
+        return True  # Indicativo de sucesso após a inserção na árvore
+
 
     def _inserir_reserva_recursivo(self, no, reserva):
         if not no:
@@ -25,8 +30,7 @@ class ArvoreReservas(RepositorioReservasInterface):
         # Comparação considerando data e número do quarto para inserção na árvore
         if reserva.data == no.reserva.data and reserva.numero_quarto == no.reserva.numero_quarto:
             # Não permitir a inserção de reservas no mesmo dia e quarto
-            print("Não é possível adicionar mais de uma reserva para o mesmo dia e quarto.")
-            return no
+            return False
 
         if reserva.data < no.reserva.data or (reserva.data == no.reserva.data and reserva.numero_quarto < no.reserva.numero_quarto):
             no.esquerda = self._inserir_reserva_recursivo(no.esquerda, reserva)
